@@ -1,3 +1,5 @@
+import socket
+
 def start_client(message, sip, sport):
     # 소켓 객체 생성 (IPv4, TCP)
     client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
