@@ -66,3 +66,7 @@ def conv_rcv(res):
 def enc_value(val, SvcId, McashSeed):
     CryptKey = SvcId[:-4]+SvcId[:-4]
     return str(McashSeed.encodeString(val, CryptKey.encode()))
+
+def dec_value(val, SvcId, McashSeed):
+    CryptKey = SvcId[:-4]+SvcId[:-4]
+    return str(McashSeed.decodeString(val, CryptKey.encode()))
