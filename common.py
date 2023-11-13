@@ -58,9 +58,8 @@ def conv_rcv(res):
     i,j = ji_calc(i, j)
     value_dic['ResultMsg'] = original_string[i:i+value_size[j]]
     i,j = ji_calc(i, j)
-    value_dic['AuthCode'] = original_string[i:i+value_size[j]]
-    i,j = ji_calc(i, j)
-    value_dic['Filler'] = original_string[i:i+value_size[j]]
+    value_dic['AuthCode'] = original_string[-157:-137]
+    value_dic['Filler'] = original_string[-137:]
     print(value_dic)
     return value_dic
 
