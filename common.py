@@ -61,7 +61,7 @@ def conv_rcv(res):
     value_dic['AuthCode'] = original_string[-157:-137]
     value_dic['Filler'] = original_string[-137:]
     for key, value in value_dic.items():
-        print(f'{key}: {value}\n')
+        print(f'{key}: {value}')
     return value_dic
 
 def enc_value(val, SvcId, McashSeed):
@@ -155,7 +155,7 @@ def conv_rcv2(res):
     i,j = ji_calc2(i, j)
     value_dic['Filler'] = original_string[i:i+value_size[j]]
     for key, value in value_dic.items():
-        print(f'{key}: {value}\n')
+        print(f'{key}: {value}')
     return value_dic
 
 def count_korean_characters(s):
