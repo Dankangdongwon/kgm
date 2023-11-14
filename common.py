@@ -56,6 +56,7 @@ def conv_rcv(res):
     i,j = ji_calc(i, j)
     value_dic['ResultCD'] = original_string[i:i+value_size[j]]
     i,j = ji_calc(i, j)
+    value_dic['ResultMsg'] = original_string[i:i+value_size[j]].strip()    
     i = i + 25 - (count_korean_characters(value_dic['ResultMsg']))
     i,j = ji_calc(i, j)
     value_dic['AuthCode'] = original_string[i:i+value_size[j]]
