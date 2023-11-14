@@ -24,12 +24,12 @@ def start_client(message, sip, sport):
     return response
 
 def ji_calc(i, j):
-    value_size = [4,1,1,2,20,12,40,32,13,14,4,100,20,137]
+    value_size = [4,1,1,2,20,12,40,32,13,14,4,75,20,137]
     return i + value_size[j], j + 1
 
 def conv_rcv(res):
     original_string = res
-    value_size = [4,1,1,2,20,12,40,32,13,14,4,100,20,137]
+    value_size = [4,1,1,2,20,12,40,32,13,14,4,75,20,137]
 
     value_dic = {}
     i = 0
@@ -56,10 +56,11 @@ def conv_rcv(res):
     i,j = ji_calc(i, j)
     value_dic['ResultCD'] = original_string[i:i+value_size[j]]
     i,j = ji_calc(i, j)
-    value_dic['ResultMsg'] = original_string[i:i+value_size[j]]
+    i = i + 25 - (count_korean_characters(value_dic['ResultMsg']))
     i,j = ji_calc(i, j)
-    value_dic['AuthCode'] = original_string[-157:-137]
-    value_dic['Filler'] = original_string[-137:]
+    value_dic['AuthCode'] = original_string[i:i+value_size[j]]
+    i,j = ji_calc(i, j)
+    value_dic['Filler'] = original_string[i:i+value_size[j]]
     for key, value in value_dic.items():
         print(f'{key}: {value}')
     return value_dic
