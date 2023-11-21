@@ -72,7 +72,7 @@ def enc_value(val, SvcId, McashSeed):
 
 def dec_value(val, SvcId, McashSeed):
     CryptKey = SvcId[:-4]+SvcId[:-4]
-    return str(McashSeed.decodeString(val, CryptKey.encode()))
+    return str(McashSeed.decodeString(val, CryptKey.encode())).replace('\x00', '')
 
 def ji_calc2(i, j):
     value_size = [4, 1, 1, 2, 2, 20, 12, 3, 50, 32, 1, 8, 4, 75, 15, 6, 15, 14, 10, 1, 1, 1, 15, 1, 1, 1, 20, 10, 10, 2, 20, 10, 50, 10, 47]
