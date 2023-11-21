@@ -80,11 +80,11 @@ def conv_rcv(res, McashSeed):
     return value_dic
 
 def enc_value(val, SvcId, McashSeed):
-    CryptKey = SvcId[:-4]+SvcId[:-4]
+    CryptKey = SvcId[0:8]+SvcId[0:8]
     return str(McashSeed.encodeString(val, CryptKey.encode()))
 
 def dec_value(val, SvcId, McashSeed):
-    CryptKey = SvcId[:-4]+SvcId[:-4]
+    CryptKey = SvcId[0:8]+SvcId[0:8]
     return str(McashSeed.decodeString(val, CryptKey.encode())).replace('\x00', '')
 
 def count_korean_characters(s):
