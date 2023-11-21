@@ -27,7 +27,7 @@ def ji_calc(i, j):
     value_size = [4,1,1,2,20,12,40,32,13,14,4,75,20,137]
     return i + value_size[j], j + 1
 
-def conv_rcv(res):
+def conv_rcv(res, McashSeed):
     original_string = res
     value_size = [4,1,1,2,20,12,40,32,13,14,4,75,20,137]
 
@@ -48,7 +48,8 @@ def conv_rcv(res):
     i,j = ji_calc(i, j)
     value_dic['MchtTrId'] = original_string[i:i+value_size[j]]
     i,j = ji_calc(i, j)
-    value_dic['PrdtPrice'] = original_string[i:i+value_size[j]]
+    value_dic['EncPrdtPrice'] = original_string[i:i+value_size[j]]
+    value_dic['PlainPrdtPrice'] = dec_value(value_dic['EncPrdtPrice'], value_dic['SvcId'], McashSeed)
     i,j = ji_calc(i, j)
     value_dic['MobilId'] = original_string[i:i+value_size[j]]
     i,j = ji_calc(i, j)
