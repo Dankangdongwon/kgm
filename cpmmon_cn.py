@@ -1,4 +1,5 @@
 import socket
+import threading
 
 def start_client(message, sip, sport):
     # 소켓 객체 생성 (IPv4, TCP)
