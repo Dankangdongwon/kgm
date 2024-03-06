@@ -48,8 +48,8 @@ def test_client(message, sip, sport):
 
 def stress_test(message, sip, sport, tc):
     for _ in range(tc):
-    t = threading.Thread(target=test_client, args=(message, sip, sport))
-    t.start()
+        t = threading.Thread(target=test_client, args=(message, sip, sport))
+        t.start()
 
 def ji_calc(i, j):
     value_size = [4,1,1,2,20,12,40,32,13,14,4,75,20,137]
