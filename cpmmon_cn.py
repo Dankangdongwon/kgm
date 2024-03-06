@@ -30,21 +30,23 @@ def test_client(message, sip, sport):
 
     # 서버 IP 주소와 포트 번호
     server_address = (sip, sport)
-
-    # 서버에 연결 시도
-    client_socket.connect(server_address)
-    print(f"connect: {server_address}")
-
-    # 서버로 데이터 송신
-    client_socket.sendall(message.encode('utf-8'))
-    print(f"send: {message}")
-
-    response = client_socket.recv(1024).decode('cp949')
-    print(f"return message: {response}")
-
-    # 연결 종료
-    client_socket.close()
-    print("connection closed.")
+    try:
+        # 서버에 연결 시도
+        client_socket.connect(server_address)
+        print(f"connect: {server_address}")
+    
+        # 서버로 데이터 송신
+        client_socket.sendall(message.encode('utf-8'))
+        print(f"send: {message}")
+    
+        response = client_socket.recv(1024).decode('cp949')
+        print(f"return message: {response}")
+    except Exception as e:
+        print(f"Error: {e}")
+    finally:
+        # 연결 종료
+        client_socket.close()
+        print("connection closed.")
 
 def stress_test(message, sip, sport, tc):
     for _ in range(tc):
