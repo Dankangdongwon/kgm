@@ -49,9 +49,13 @@ def test_client(message, sip, sport):
         print("connection closed.")
 
 def stress_test(message, sip, sport, tc):
+    print('stress test In')
     for _ in range(tc):
+        print('stress test For loop In')
         t = threading.Thread(target=test_client, args=(message, sip, sport))
+        print('stress test make thread')
         t.start()
+        print('stress test Start')
 
 def ji_calc(i, j):
     value_size = [6,4,4,1,1,20,32,4,75,80,32,20,8,6,50,10,10,1,12,4]
