@@ -1,5 +1,6 @@
 import socket
 import threading
+import re
 
 def start_client(message, sip, sport):
     # 소켓 객체 생성 (IPv4, TCP)
@@ -194,4 +195,11 @@ def count_korean_characters(s):
     for char in s:
         if '가' <= char <= '힣':
             count += 1
+    return count
+    
+def count_korean_chars(text):
+    korean_chars = re.findall(r'[\u3131-\u3163\uac00-\ud7a3]+', text)
+    count = 0
+    for char in korean_chars:
+        count += len(char)
     return count
