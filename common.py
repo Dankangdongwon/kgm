@@ -14,7 +14,8 @@ def start_client(message, sip, sport):
     print(f"connect: {server_address}")
 
     # 서버로 데이터 송신
-    client_socket.sendall(message.encode('utf-8'))
+    #client_socket.sendall(message.encode('utf-8'))
+    client_socket.sendall(message.encode('cp949'))
     print(f"send: {message}")
 
     response = client_socket.recv(1024).decode('cp949')
