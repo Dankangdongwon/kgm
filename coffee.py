@@ -98,8 +98,8 @@ def get_reason(MyTeam, CoWorkTeam, CoffeePrice, UnitPrice):
     elif CoWorkTeam == 'MyTeamOnly':
         cowork_mem_list = []
     CoffeeCount = ceil(CoffeePrice/UnitPrice) - 1
-    if CoffeeCount > len(member_list) + len(cowork_mem_list):
-        CoffeeCount = len(member_list)+ len(cowork_mem_list)
+    if CoffeeCount > len(member_list)-1 + len(cowork_mem_list):
+        CoffeeCount = len(member_list)-1 + len(cowork_mem_list)
     if len(cowork_mem_list) > 0:
         CoffeeCount_my = ceil(CoffeeCount/2)
         CoffeeCount_co = CoffeeCount - CoffeeCount_my
