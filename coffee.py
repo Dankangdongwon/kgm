@@ -292,8 +292,10 @@ def get_reason(MyTeam, CoWorkTeam, CoffeePrice, UnitPrice):
         member_list = ['전상호','양동국', '허정호', '박상한', '이두한', '배동규', '이재철', '류아란', '조은이']
     elif MyTeam == 'PAYDEV':
         member_list = ['문현식','김선애', '박주일', '정광민']
-
-    if CoWorkTeam == 'PGDEV':
+                
+    if MyTeam == CoWorkTeam or CoWorkTeam == 'MyTeamOnly':
+        cowork_mem_list = []
+    elif CoWorkTeam == 'PGDEV':
         cowork_mem_list = ['김규성','강동원', '안지은', '이재우', '황지산', '김지현']
     elif CoWorkTeam == 'SVCOP':
         cowork_mem_list = ['장치암','이창현', '김지현', '오유진', '황휘람', '안인택', '김영수']
@@ -302,9 +304,8 @@ def get_reason(MyTeam, CoWorkTeam, CoffeePrice, UnitPrice):
     elif CoWorkTeam == 'INFRA':
         cowork_mem_list = ['전상호','양동국', '허정호', '박상한', '이두한', '배동규', '이재철', '류아란', '조은이']
     elif CoWorkTeam == 'PAYDEV':
-        cowork_mem_list = ['문현식','김선애', '박주일', '정광민']
-    elif CoWorkTeam == 'MyTeamOnly':
-        cowork_mem_list = []
+        cowork_mem_list = ['문현식','김선애', '박주일', '정광민']        
+    
     CoffeeCount = ceil(CoffeePrice/UnitPrice) - 1
     if CoffeeCount > len(member_list)-1 + len(cowork_mem_list):
         CoffeeCount = len(member_list)-1 + len(cowork_mem_list)
