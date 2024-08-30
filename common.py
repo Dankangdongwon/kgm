@@ -105,13 +105,16 @@ def dec_value(val, SvcId, McashSeed):
     CryptKey = SvcId[:-4]+SvcId[:-4]
     return str(McashSeed.decodeString(val, CryptKey.encode())).replace('\x00', '')
 
-def ji_calc2(i, j):
-    value_size = [4, 1, 1, 2, 2, 20, 12, 3, 50, 32, 1, 8, 4, 75, 15, 6, 15, 14, 10, 1, 1, 1, 15, 1, 1, 1, 20, 10, 10, 2, 20, 10, 50, 10, 47]
+def ji_calc2(i, j, k=None):
+    if k is None: k = 0
+    value_size = [4, 1, 1, 2, 2, 20, 12, 3, 50, 32, 1, 8, 4, 100 - k, 15, 6, 15, 14, 10, 1, 1, 1, 15, 1, 1, 1, 20, 10, 10, 2, 20, 10, 50, 10, 47]
     return i + value_size[j], j + 1
 
 def conv_rcv2(res):
     original_string = res
-    value_size = [4, 1, 1, 2, 2, 20, 12, 3, 50, 32, 1, 8, 4, 75, 15, 6, 15, 14, 10, 1, 1, 1, 15, 1, 1, 1, 20, 10, 10, 2, 20, 10, 50, 10, 47]
+    k = count_korean_chars(res)
+
+    value_size = [4, 1, 1, 2, 2, 20, 12, 3, 50, 32, 1, 8, 4, 100 - k, 15, 6, 15, 14, 10, 1, 1, 1, 15, 1, 1, 1, 20, 10, 10, 2, 20, 10, 50, 10, 47]
 
     value_dic = {}
     i = 0
@@ -142,9 +145,9 @@ def conv_rcv2(res):
     value_dic['Item'] = original_string[i:i+value_size[j]]
     i,j = ji_calc2(i, j)
     value_dic['ResultCD'] = original_string[i:i+value_size[j]]
-    i,j = ji_calc2(i, j)
+    i,j = ji_calc2(i, j, k)
     value_dic['ResultMsg'] = original_string[i:i+value_size[j]].strip()
-    i = i + 25 - (count_korean_characters(value_dic['ResultMsg']))
+    i = i - k
     i,j = ji_calc2(i, j)
     value_dic['PhoneId'] = original_string[i:i+value_size[j]]
     i,j = ji_calc2(i, j)
